@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Desain - ShinzCoder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        /* Paksa semua rounded-2xl ke 16px jika tailwind config default berbeda */
+        .rounded-2xl { border-radius: 16px ! academies; }
+        .fade-in { animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 pb-20">
+
+    <!-- Navigasi Atas -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-slate-900 text-white p-2 rounded-2xl">
+                    <i data-lucide="grid" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight text-slate-900">Sistem Desain</h1>
+                    <p class="text-xs text-slate-500 font-medium">Oleh ShinzCoder</p>
+                </div>
+            </div>
+            
+            <div class="flex bg-slate-100 p-1 rounded-2xl">
+                <button onclick="switchTab('home')" id="btn-home" class="flex items-center gap-2 px-6 py-2 rounded-2xl text-sm font-bold transition-all bg-white text-slate-900 shadow-sm">
+                    <i data-lucide="home" class="w-4 h-4"></i> Home
+                </button>
+                <button onclick="switchTab('glosarium')" id="btn-glosarium" class="flex items-center gap-2 px-6 py-2 rounded-2xl text-sm font-bold transition-all text-slate-500 hover:text-slate-700">
+                    <i data-lucide="book-open" class="w-4 h-4"></i> Glosarium
+                </button>
+            </div>
+            <div class="hidden md:block w-32"></div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-6 pt-10">
+        
+        <!-- BAGIAN HOME -->
+        <div id="tab-home" class="fade-in">
+            <header class="mb-12">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-bold uppercase tracking-wider mb-4">
+                    <i data-lucide="layers" class="w-3.5 h-3.5"></i> Koleksi Sekarang
+                </div>
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4" id="theme-title">Tema 01: Social Media Mix</h2>
+                <p class="text-lg text-slate-600 max-w-2xl leading-relaxed" id="theme-desc">
+                    Ini kumpulan contoh desain buat konten harian. Lihat contohnya satu-satu ya, biar tahu mana yang mau ditiru bagian tulisannya, warnanya, atau pajangannya.
+                </p>
+            </header>
+
+            <!-- Grid Peran Tetap -->
+            <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12" id="roles-grid">
+                <!-- Diisi via JS -->
+            </section>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar -->
+                <aside class="lg:w-72 flex-shrink-0">
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 sticky top-32">
+                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest px-4 mb-4 mt-2">Pilih Desain</h3>
+                        <div class="space-y-1" id="category-menu">
+                            <!-- Diisi via JS -->
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Grid -->
+                <main class="flex-grow">
+                    <div class="bg-white rounded-2xl p-6 md:p-10 border border-slate-200 shadow-xl shadow-slate-100/50">
+                        <div class="flex items-start justify-between mb-8 border-b border-slate-100 pb-8">
+                            <div>
+                                <h2 class="text-3xl font-black text-slate-900" id="cat-title">Memuat...</h2>
+                                <button onclick="handleShuffle()" class="mt-6 flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl text-sm font-bold transition-all active:scale-95 group">
+                                    <i data-lucide="shuffle" class="w-4 h-4 group-hover:rotate-180 transition-transform duration-500"></i>
+                                    Acak Link
+                                </button>
+                            </div>
+                            <div class="hidden md:block text-right">
+                                <p class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Ukuran Kertas</p>
+                                <p class="text-lg font-mono font-bold text-slate-700 bg-slate-100 px-3 py-1 rounded-2xl" id="cat-size">-</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="items-grid">
+                            <!-- Diisi via JS -->
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- BAGIAN GLOSARIUM -->
+        <div id="tab-glosarium" class="hidden fade-in max-w-4xl mx-auto">
+            <header class="mb-10">
+                <h2 class="text-4xl font-black text-slate-900 mb-4">Kamus Desain (Glosarium)</h2>
+                <p class="text-lg text-slate-600">Bingung sama kata-kata desain yang susah? Cek di sini penjelasannya pakai bahasa yang gampang.</p>
+            </header>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="glossary-grid">
+                <!-- Diisi via JS -->
+            </div>
+            
+            <div class="mt-12 p-8 bg-indigo-900 text-white rounded-2xl relative overflow-hidden">
+                <div class="relative z-10">
+                    <h3 class="text-2xl font-bold mb-2">Punya pertanyaan lain?</h3>
+                    <p class="opacity-80 mb-6">Kalau ada kata yang belum ada di sini, tanya aja ya!</p>
+                    <div class="bg-white/10 inline-block px-4 py-2 rounded-2xl font-mono text-sm">
+                        Tanya saja Ke ShinzCoder
+                    </div>
+                </div>
+                <i data-lucide="sparkles" class="absolute -right-4 -bottom-4 w-32 h-32 opacity-10"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // DATA
+        const glossary = [
+            { term: "Layout", desc: "Cara kita mengatur posisi gambar dan tulisan biar enak dilihat." },
+            { term: "Copywriter", desc: "Orang yang tugasnya bikin kata-kata atau judul yang menarik." },
+            { term: "Palette", desc: "Pilihan warna yang dipakai supaya desainnya nyambung warnanya." },
+            { term: "Mood", desc: "Perasaan atau suasana yang muncul pas kita lihat desain itu." },
+            { term: "Element", desc: "Benda-benda kecil kayak garis, kotak, atau hiasan di desain." },
+            { term: "White Space", desc: "Bagian kosong di desain biar mata nggak capek lihatnya." }
+        ];
+
+        const guideRoles = [
+            { icon: "type", label: "Copywriter", desc: "Judul, deskripsi dan kata-katanya", color: "bg-blue-600", light: "bg-blue-50 text-blue-600 border-blue-200" },
+            { icon: "layout", label: "Layout", desc: "Tata letak/ posisi gambar dan teks", color: "bg-purple-600", light: "bg-purple-50 text-purple-600 border-purple-200" },
+            { icon: "palette", label: "Warna", desc: "Warna yang dipakai pada design", color: "bg-orange-500", light: "bg-orange-50 text-orange-600 border-orange-200" },
+            { icon: "component", label: "Element", desc: "Gambar kecil atau ikon", color: "bg-emerald-600", light: "bg-emerald-50 text-emerald-600 border-emerald-200" },
+            { icon: "sparkles", label: "Style", desc: "Model desainnya ", color: "bg-pink-600", light: "bg-pink-50 text-pink-600 border-pink-200" },
+            { icon: "box", label: "Suasana", desc: "Rasa saat melihatnya", color: "bg-indigo-600", light: "bg-indigo-50 text-indigo-600 border-indigo-200" }
+        ];
+
+        const categories = [
+            { title: "Daily Vlogger - Youtube Banner", size: "2560 x 1440 px", icon: "youtube", items: ["https://www.canva.com/templates/EAE6keKbtqE/", "https://www.canva.com/templates/EAFIWn_zl-Y/", "https://www.canva.com/templates/EAEuuzE4dWo/", "https://www.canva.com/templates/EAEwKeQyWtk/", "https://www.canva.com/templates/EAEz2VdgSOU/", "https://www.canva.com/templates/EAFVAPMS080/"] },
+            { title: "Mind Map - Poster", size: "42 x 59.4 cm (A2)", icon: "map", items: ["https://www.canva.com/templates/EAG_Bf0HPy0/", "https://www.canva.com/templates/EAGhsDXQOQc/", "https://www.canva.com/templates/EAG9y5-KvlQ/", "https://www.canva.com/templates/EAG-MZQ05Oo/", "https://www.canva.com/templates/EAG109D0fjA/", "https://www.canva.com/templates/EAG7r84yVs8/"] },
+            { title: "Nature - Photo Collage", size: "20 x 30 cm", icon: "image", items: ["https://www.canva.com/templates/EAFMILfkwvI/", "https://www.canva.com/templates/EAEZizitojY/", "https://www.canva.com/templates/EAGEmce9NFA/", "https://www.canva.com/templates/EAGNCsKe8EQ/", "https://www.canva.com/templates/EAGNmjMUxPU/", "https://www.canva.com/templates/EAF868vvi5w/"] },
+            { title: "Food Promotion - IG Story", size: "1080 x 1920 px", icon: "utensils", items: ["https://www.canva.com/templates/EAHBd2OsH-E", "https://www.canva.com/templates/EAFoByFJbx8/", "https://www.canva.com/templates/EAFpm2Huc2Y/", "https://www.canva.com/templates/EAGTOlmROcw/", "https://www.canva.com/templates/EAGTV2g132Q/", "https://www.canva.com/templates/EAGMoPc6ahM/"] },
+            { title: "Quote - IG Post", size: "20 x 30 cm", icon: "quote", items: ["https://www.canva.com/templates/EAGfoxXQn3E", "https://www.canva.com/templates/EAG945ogdfQ", "https://www.canva.com/templates/EAG_7pzrOkM", "https://www.canva.com/templates/EAG_7qdmRr4", "https://www.canva.com/templates/EAG_7uzlWyw", "https://www.canva.com/templates/EAFtqMYHXm8/"] }
+        ];
+
+        let activeCategoryIndex = 0;
+
+        function init() {
+            renderRoles();
+            renderGlossary();
+            renderSidebar();
+            renderContent();
+            lucide.createIcons();
+        }
+
+        function switchTab(tab) {
+            const home = document.getElementById('tab-home');
+            const glosarium = document.getElementById('tab-glosarium');
+            const btnHome = document.getElementById('btn-home');
+            const btnGlosarium = document.getElementById('btn-glosarium');
+
+            if (tab === 'home') {
+                home.classList.remove('hidden');
+                glosarium.classList.add('hidden');
+                btnHome.className = "flex items-center gap-2 px-6 py-2 rounded-2xl text-sm font-bold transition-all bg-white text-slate-900 shadow-sm";
+                btnGlosarium.className = "flex items-center gap-2 px-6 py-2 rounded-2xl text-sm font-bold transition-all text-slate-500 hover:text-slate-700";
+            } else {
+                home.classList.add('hidden');
+                glosarium.classList.remove('hidden');
+                btnGlosarium.className = "flex items-center gap-2 px-6 py-2 rounded-2xl text-sm font-bold transition-all bg-white text-slate-900 shadow-sm";
+                btnHome.className = "flex items-center gap-2 px-6 py-2 rounded-2xl text-sm font-bold transition-all text-slate-500 hover:text-slate-700";
+            }
+        }
+
+        function renderRoles() {
+            const grid = document.getElementById('roles-grid');
+            grid.innerHTML = guideRoles.map(role => `
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300">
+                    <div class="w-10 h-10 rounded-2xl flex items-center justify-center mb-4 ${role.light} border-0">
+                        <i data-lucide="${role.icon}" class="w-4.5 h-4.5"></i>
+                    </div>
+                    <p class="font-bold text-slate-800">${role.label}</p>
+                    <p class="text-[10px] text-slate-500 mt-1 leading-tight">${role.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderGlossary() {
+            const grid = document.getElementById('glossary-grid');
+            grid.innerHTML = glossary.map(item => `
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-indigo-200 transition-colors">
+                    <h3 class="text-xl font-bold text-indigo-600 mb-2">${item.term}</h3>
+                    <p class="text-slate-600 leading-relaxed">${item.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderSidebar() {
+            const menu = document.getElementById('category-menu');
+            menu.innerHTML = categories.map((cat, idx) => `
+                <button onclick="setCategory(${idx})" class="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium transition-all duration-200 ${activeCategoryIndex === idx ? 'bg-slate-900 text-white shadow-lg' : 'text-slate-600 hover:bg-slate-50'}">
+                    <i data-lucide="${cat.icon}" class="w-4 h-4"></i>
+                    <span class="truncate">${cat.title.split('-')[0].trim()}</span>
+                </button>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function setCategory(idx) {
+            activeCategoryIndex = idx;
+            renderSidebar();
+            renderContent();
+        }
+
+        function renderContent(shuffledLinks = false) {
+            const cat = categories[activeCategoryIndex];
+            document.getElementById('cat-title').innerText = cat.title;
+            document.getElementById('cat-size').innerText = cat.size;
+
+            let linkList = [...cat.items];
+            if (shuffledLinks) {
+                linkList = linkList.sort(() => Math.random() - 0.5);
+            }
+
+            const items = linkList.map((link, idx) => ({ link, role: guideRoles[idx] }));
+
+            const grid = document.getElementById('items-grid');
+            grid.innerHTML = items.map(item => `
+                <div class="group relative bg-white rounded-2xl p-5 border border-slate-200 transition-all hover:border-indigo-300 hover:shadow-lg animate-in fade-in duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide border ${item.role.light}">
+                            Contoh ${item.role.label}
+                        </div>
+                        <a href="${item.link}" target="_blank" class="text-slate-300 hover:text-indigo-600">
+                            <i data-lucide="external-link" class="w-4.5 h-4.5"></i>
+                        </a>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="p-1.5 rounded-2xl text-white ${item.role.color}">
+                                <i data-lucide="${item.role.icon}" class="w-3.5 h-3.5"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 text-sm">Tiru bagian ini:</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed pl-9">
+                            ${item.role.desc}
+                        </p>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function handleShuffle() {
+            renderContent(true);
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
