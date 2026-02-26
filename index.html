@@ -1,272 +1,182 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Desain - ShinzCoder</title>
+    <!-- Mengimpor font elegan dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <!-- Memuat Tailwind CSS melalui CDN untuk styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        /* Paksa semua rounded-2xl ke 16px jika tailwind config default berbeda */
-        .rounded-2xl { border-radius: 16px ! academies; }
-        .fade-in { animation: fadeIn 0.5s ease-out; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['DM Serif Display', 'serif'],
+                        playfair: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        gray: {
+                            50: '#fafafa',
+                            100: '#f4f4f5',
+                            500: '#71717a',
+                            800: '#27272a',
+                            900: '#18181b',
+                        }
+                    }
+                }
+            }
         }
-    </style>
+    </script>
+    <title>ErmediaTheme | Shinz</title>
 </head>
-<body class="bg-slate-50 text-slate-900 pb-20">
+<body class="bg-gray-50 text-gray-900 font-sans antialiased min-h-screen flex flex-col selection:bg-gray-200">
 
-    <!-- Navigasi Atas -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-4">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <div class="bg-slate-900 text-white p-2 rounded-2xl">
-                    <i data-lucide="grid" class="w-5 h-5"></i>
-                </div>
-                <div>
-                    <h1 class="text-lg font-bold tracking-tight text-slate-900">Sistem Desain</h1>
-                    <p class="text-xs text-slate-500 font-medium">Oleh ShinzCoder</p>
-                </div>
-            </div>
-            
-            <div class="flex bg-slate-100 p-1 rounded-2xl">
-                <button onclick="switchTab('home')" id="btn-home" class="flex items-center gap-2 px-6 py-2 rounded-2xl text-sm font-bold transition-all bg-white text-slate-900 shadow-sm">
-                    <i data-lucide="home" class="w-4 h-4"></i> Home
-                </button>
-                <button onclick="switchTab('glosarium')" id="btn-glosarium" class="flex items-center gap-2 px-6 py-2 rounded-2xl text-sm font-bold transition-all text-slate-500 hover:text-slate-700">
-                    <i data-lucide="book-open" class="w-4 h-4"></i> Glosarium
-                </button>
-            </div>
-            <div class="hidden md:block w-32"></div>
-        </div>
-    </nav>
-
-    <div class="max-w-7xl mx-auto px-4 md:px-6 pt-10">
+    <!-- Container Utama -->
+    <div class="flex-grow flex flex-col w-full">
         
-        <!-- BAGIAN HOME -->
-        <div id="tab-home" class="fade-in">
-            <header class="mb-12">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-bold uppercase tracking-wider mb-4">
-                    <i data-lucide="layers" class="w-3.5 h-3.5"></i> Koleksi Sekarang
+        <!-- Navbar -->
+        <header class="sticky top-0 z-50 bg-gray-50/80 backdrop-blur-md border-b border-gray-100">
+            <nav class="max-w-[1500px] mx-auto px-6 py-5 flex items-center justify-between">
+                <div>
+                    <a href="#" class="text-xl font-bold tracking-tight text-gray-900 hover:opacity-80 transition-opacity">
+                        ErmediaTheme<span class="text-gray-400">.</span>
+                    </a>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4" id="theme-title">Tema 01: Social Media Mix</h2>
-                <p class="text-lg text-slate-600 max-w-2xl leading-relaxed" id="theme-desc">
-                    Ini kumpulan contoh desain buat konten harian. Lihat contohnya satu-satu ya, biar tahu mana yang mau ditiru bagian tulisannya, warnanya, atau pajangannya.
-                </p>
-            </header>
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="#" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Tema</a>
+                    <a href="#" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Element</a>
+                    <a href="#" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Warna</a>
+                    <a href="#" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Font</a>
+                </div>
+                <!-- Tombol Menu Mobile -->
+                <button class="md:hidden text-gray-500 hover:text-gray-900">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+                </button>
+            </nav>
+        </header>
 
-            <!-- Grid Peran Tetap -->
-            <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12" id="roles-grid">
-                <!-- Diisi via JS -->
+        <!-- Konten Utama -->
+        <main class="flex-grow w-full max-w-[1500px] mx-auto px-6">
+            
+            <!-- Bagian Hero -->
+            <section id="hero" class="py-24 md:py-32 flex flex-col items-center text-center max-w-5xl mx-auto">
+                <span class="px-4 py-1.5 rounded-full bg-gray-100 border border-gray-200 text-[10px] font-semibold tracking-widest text-gray-500 uppercase mb-6">
+                    Koleksi Terbaru
+                </span>
+                <!-- Judul dengan Font Serif Italic -->
+                <h1 class="text-5xl md:text-8xl font-normal italic text-gray-900 leading-[1.1] mb-6 font-serif ">
+                    Referensi Tema Canva
+                </h1>
+                <!-- Deskripsi dengan teks baru sesuai permintaan -->
+                <p class="text-xs text-gray-400 leading-relaxed mb-10 max-w-lg capitalize tracking-[0.1em]">
+                    Pilih Tema Sesuai Urutan Dari Daftar Tema Yang Tersedia, Tema Akan Diupdate Secara Berkala.
+                </p>
+                <!-- Anchor Link ke ID daftar-tema -->
+                <a href="#daftar-tema" class="px-8 py-3.5 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 focus:ring-4 focus:ring-gray-200 transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-gray-200 no-underline">
+                    Cari tema
+                </a>
             </section>
 
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Sidebar -->
-                <aside class="lg:w-72 flex-shrink-0">
-                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 sticky top-32">
-                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest px-4 mb-4 mt-2">Pilih Desain</h3>
-                        <div class="space-y-1" id="category-menu">
-                            <!-- Diisi via JS -->
-                        </div>
-                    </div>
-                </aside>
-
-                <!-- Main Grid -->
-                <main class="flex-grow">
-                    <div class="bg-white rounded-2xl p-6 md:p-10 border border-slate-200 shadow-xl shadow-slate-100/50">
-                        <div class="flex items-start justify-between mb-8 border-b border-slate-100 pb-8">
-                            <div>
-                                <h2 class="text-3xl font-black text-slate-900" id="cat-title">Memuat...</h2>
-                                <button onclick="handleShuffle()" class="mt-6 flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl text-sm font-bold transition-all active:scale-95 group">
-                                    <i data-lucide="shuffle" class="w-4 h-4 group-hover:rotate-180 transition-transform duration-500"></i>
-                                    Acak Link
-                                </button>
-                            </div>
-                            <div class="hidden md:block text-right">
-                                <p class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Ukuran Kertas</p>
-                                <p class="text-lg font-mono font-bold text-slate-700 bg-slate-100 px-3 py-1 rounded-2xl" id="cat-size">-</p>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="items-grid">
-                            <!-- Diisi via JS -->
-                        </div>
-                    </div>
-                </main>
-            </div>
-        </div>
-
-        <!-- BAGIAN GLOSARIUM -->
-        <div id="tab-glosarium" class="hidden fade-in max-w-4xl mx-auto">
-            <header class="mb-10">
-                <h2 class="text-4xl font-black text-slate-900 mb-4">Kamus Desain (Glosarium)</h2>
-                <p class="text-lg text-slate-600">Bingung sama kata-kata desain yang susah? Cek di sini penjelasannya pakai bahasa yang gampang.</p>
-            </header>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="glossary-grid">
-                <!-- Diisi via JS -->
-            </div>
-            
-            <div class="mt-12 p-8 bg-indigo-900 text-white rounded-2xl relative overflow-hidden">
-                <div class="relative z-10">
-                    <h3 class="text-2xl font-bold mb-2">Punya pertanyaan lain?</h3>
-                    <p class="opacity-80 mb-6">Kalau ada kata yang belum ada di sini, tanya aja ya!</p>
-                    <div class="bg-white/10 inline-block px-4 py-2 rounded-2xl font-mono text-sm">
-                        Tanya saja Ke ShinzCoder
-                    </div>
+            <!-- Bagian Daftar Tema -->
+            <section id="daftar-tema" class="py-16 md:py-24 border-t border-gray-100">
+                <div class="flex items-center justify-between mb-12">
+                    <h2 class="text-2xl font-semibold text-gray-900 tracking-tight">Daftar Tema</h2>
+                    <a href="#" class="text-sm font-medium text-gray-500 hover:text-gray-900 flex items-center gap-1 group">
+                        Lihat semua
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
                 </div>
-                <i data-lucide="sparkles" class="absolute -right-4 -bottom-4 w-32 h-32 opacity-10"></i>
+                
+                <!-- Wadah Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Item Tema 1 -->
+                    <a href="https://ermediateam06.github.io/Referensi-Design/" class="group flex flex-col overflow-hidden bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-gray-200 transition-all duration-300">
+                        <div class="relative w-full aspect-[4/3] bg-gray-100 overflow-hidden">
+                            <img src="https://ermediateam06.github.io/Referensi-Design/background.png" alt="Tema 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <div>
+                                <h3 class="font-semibold text-gray-900">Referensi 01 - 27/02/26</h3>
+                                <p class="text-sm text-gray-500 mt-1">Style modern</p>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-gray-900 group-hover:text-white transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Item Tema 2 -->
+                    <a href="#" class="group flex flex-col overflow-hidden bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-gray-200 transition-all duration-300">
+                        <div class="relative w-full aspect-[4/3] bg-gray-100 overflow-hidden">
+                            <img src="https://ermediateam06.github.io/Referensi-Design/background.png" alt="Tema 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <div>
+                                <h3 class="font-semibold text-gray-900">Referensi 02 - 27/02/26</h3>
+                                <p class="text-sm text-gray-500 mt-1">Eksplorasi bentuk</p>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-gray-900 group-hover:text-white transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Item Tema 3 -->
+                    <a href="#" class="group flex flex-col overflow-hidden bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-gray-200 transition-all duration-300">
+                        <div class="relative w-full aspect-[4/3] bg-gray-100 overflow-hidden">
+                            <img src="https://ermediateam06.github.io/Referensi-Design/background.png" alt="Tema 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <div>
+                                <h3 class="font-semibold text-gray-900">Referensi 03 - 27/02/26</h3>
+                                <p class="text-sm text-gray-500 mt-1">Putih dan terang</p>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-gray-900 group-hover:text-white transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Item Tema 3 -->
+                    <a href="#" class="group flex flex-col overflow-hidden bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-gray-200 transition-all duration-300">
+                        <div class="relative w-full aspect-[4/3] bg-gray-100 overflow-hidden">
+                            <img src="https://ermediateam06.github.io/Referensi-Design/background.png" alt="Tema 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <div>
+                                <h3 class="font-semibold text-gray-900">Referensi 04 - 27/02/26</h3>
+                                <p class="text-sm text-gray-500 mt-1">Putih dan terang</p>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-gray-900 group-hover:text-white transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 mt-12 py-12">
+            <div class="max-w-[1500px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex flex-col items-center md:items-start">
+                    <h2 class="text-lg font-bold tracking-tight text-white mb-2">ErmediaTheme.</h2>
+                    <p class="text-sm text-gray-400">Copyright © 2026 ErmediaTheme. All rights reserved.</p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Contact Us</a>
+                </div>
             </div>
-        </div>
+        </footer>
 
     </div>
-
-    <script>
-        // DATA
-        const glossary = [
-            { term: "Layout", desc: "Cara kita mengatur posisi gambar dan tulisan biar enak dilihat." },
-            { term: "Copywriter", desc: "Orang yang tugasnya bikin kata-kata atau judul yang menarik." },
-            { term: "Palette", desc: "Pilihan warna yang dipakai supaya desainnya nyambung warnanya." },
-            { term: "Mood", desc: "Perasaan atau suasana yang muncul pas kita lihat desain itu." },
-            { term: "Element", desc: "Benda-benda kecil kayak garis, kotak, atau hiasan di desain." },
-            { term: "White Space", desc: "Bagian kosong di desain biar mata nggak capek lihatnya." }
-        ];
-
-        const guideRoles = [
-            { icon: "type", label: "Copywriter", desc: "Judul, deskripsi dan kata-katanya", color: "bg-blue-600", light: "bg-blue-50 text-blue-600 border-blue-200" },
-            { icon: "layout", label: "Layout", desc: "Tata letak/ posisi gambar dan teks", color: "bg-purple-600", light: "bg-purple-50 text-purple-600 border-purple-200" },
-            { icon: "palette", label: "Warna", desc: "Warna yang dipakai pada design", color: "bg-orange-500", light: "bg-orange-50 text-orange-600 border-orange-200" },
-            { icon: "component", label: "Element", desc: "Gambar kecil atau ikon", color: "bg-emerald-600", light: "bg-emerald-50 text-emerald-600 border-emerald-200" },
-            { icon: "sparkles", label: "Style", desc: "Model desainnya ", color: "bg-pink-600", light: "bg-pink-50 text-pink-600 border-pink-200" },
-            { icon: "box", label: "Suasana", desc: "Rasa saat melihatnya", color: "bg-indigo-600", light: "bg-indigo-50 text-indigo-600 border-indigo-200" }
-        ];
-
-        const categories = [
-            { title: "Daily Vlogger - Youtube Banner", size: "2560 x 1440 px", icon: "youtube", items: ["https://www.canva.com/templates/EAE6keKbtqE/", "https://www.canva.com/templates/EAFIWn_zl-Y/", "https://www.canva.com/templates/EAEuuzE4dWo/", "https://www.canva.com/templates/EAEwKeQyWtk/", "https://www.canva.com/templates/EAEz2VdgSOU/", "https://www.canva.com/templates/EAFVAPMS080/"] },
-            { title: "Mind Map - Poster", size: "42 x 59.4 cm (A2)", icon: "map", items: ["https://www.canva.com/templates/EAG_Bf0HPy0/", "https://www.canva.com/templates/EAGhsDXQOQc/", "https://www.canva.com/templates/EAG9y5-KvlQ/", "https://www.canva.com/templates/EAG-MZQ05Oo/", "https://www.canva.com/templates/EAG109D0fjA/", "https://www.canva.com/templates/EAG7r84yVs8/"] },
-            { title: "Nature - Photo Collage", size: "20 x 30 cm", icon: "image", items: ["https://www.canva.com/templates/EAFMILfkwvI/", "https://www.canva.com/templates/EAEZizitojY/", "https://www.canva.com/templates/EAGEmce9NFA/", "https://www.canva.com/templates/EAGNCsKe8EQ/", "https://www.canva.com/templates/EAGNmjMUxPU/", "https://www.canva.com/templates/EAF868vvi5w/"] },
-            { title: "Food Promotion - IG Story", size: "1080 x 1920 px", icon: "utensils", items: ["https://www.canva.com/templates/EAHBd2OsH-E", "https://www.canva.com/templates/EAFoByFJbx8/", "https://www.canva.com/templates/EAFpm2Huc2Y/", "https://www.canva.com/templates/EAGTOlmROcw/", "https://www.canva.com/templates/EAGTV2g132Q/", "https://www.canva.com/templates/EAGMoPc6ahM/"] },
-            { title: "Quote - IG Post", size: "20 x 30 cm", icon: "quote", items: ["https://www.canva.com/templates/EAGfoxXQn3E", "https://www.canva.com/templates/EAG945ogdfQ", "https://www.canva.com/templates/EAG_7pzrOkM", "https://www.canva.com/templates/EAG_7qdmRr4", "https://www.canva.com/templates/EAG_7uzlWyw", "https://www.canva.com/templates/EAFtqMYHXm8/"] }
-        ];
-
-        let activeCategoryIndex = 0;
-
-        function init() {
-            renderRoles();
-            renderGlossary();
-            renderSidebar();
-            renderContent();
-            lucide.createIcons();
-        }
-
-        function switchTab(tab) {
-            const home = document.getElementById('tab-home');
-            const glosarium = document.getElementById('tab-glosarium');
-            const btnHome = document.getElementById('btn-home');
-            const btnGlosarium = document.getElementById('btn-glosarium');
-
-            if (tab === 'home') {
-                home.classList.remove('hidden');
-                glosarium.classList.add('hidden');
-                btnHome.className = "flex items-center gap-2 px-6 py-2 rounded-2xl text-sm font-bold transition-all bg-white text-slate-900 shadow-sm";
-                btnGlosarium.className = "flex items-center gap-2 px-6 py-2 rounded-2xl text-sm font-bold transition-all text-slate-500 hover:text-slate-700";
-            } else {
-                home.classList.add('hidden');
-                glosarium.classList.remove('hidden');
-                btnGlosarium.className = "flex items-center gap-2 px-6 py-2 rounded-2xl text-sm font-bold transition-all bg-white text-slate-900 shadow-sm";
-                btnHome.className = "flex items-center gap-2 px-6 py-2 rounded-2xl text-sm font-bold transition-all text-slate-500 hover:text-slate-700";
-            }
-        }
-
-        function renderRoles() {
-            const grid = document.getElementById('roles-grid');
-            grid.innerHTML = guideRoles.map(role => `
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300">
-                    <div class="w-10 h-10 rounded-2xl flex items-center justify-center mb-4 ${role.light} border-0">
-                        <i data-lucide="${role.icon}" class="w-4.5 h-4.5"></i>
-                    </div>
-                    <p class="font-bold text-slate-800">${role.label}</p>
-                    <p class="text-[10px] text-slate-500 mt-1 leading-tight">${role.desc}</p>
-                </div>
-            `).join('');
-        }
-
-        function renderGlossary() {
-            const grid = document.getElementById('glossary-grid');
-            grid.innerHTML = glossary.map(item => `
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-indigo-200 transition-colors">
-                    <h3 class="text-xl font-bold text-indigo-600 mb-2">${item.term}</h3>
-                    <p class="text-slate-600 leading-relaxed">${item.desc}</p>
-                </div>
-            `).join('');
-        }
-
-        function renderSidebar() {
-            const menu = document.getElementById('category-menu');
-            menu.innerHTML = categories.map((cat, idx) => `
-                <button onclick="setCategory(${idx})" class="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium transition-all duration-200 ${activeCategoryIndex === idx ? 'bg-slate-900 text-white shadow-lg' : 'text-slate-600 hover:bg-slate-50'}">
-                    <i data-lucide="${cat.icon}" class="w-4 h-4"></i>
-                    <span class="truncate">${cat.title.split('-')[0].trim()}</span>
-                </button>
-            `).join('');
-            lucide.createIcons();
-        }
-
-        function setCategory(idx) {
-            activeCategoryIndex = idx;
-            renderSidebar();
-            renderContent();
-        }
-
-        function renderContent(shuffledLinks = false) {
-            const cat = categories[activeCategoryIndex];
-            document.getElementById('cat-title').innerText = cat.title;
-            document.getElementById('cat-size').innerText = cat.size;
-
-            let linkList = [...cat.items];
-            if (shuffledLinks) {
-                linkList = linkList.sort(() => Math.random() - 0.5);
-            }
-
-            const items = linkList.map((link, idx) => ({ link, role: guideRoles[idx] }));
-
-            const grid = document.getElementById('items-grid');
-            grid.innerHTML = items.map(item => `
-                <div class="group relative bg-white rounded-2xl p-5 border border-slate-200 transition-all hover:border-indigo-300 hover:shadow-lg animate-in fade-in duration-300">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide border ${item.role.light}">
-                            Contoh ${item.role.label}
-                        </div>
-                        <a href="${item.link}" target="_blank" class="text-slate-300 hover:text-indigo-600">
-                            <i data-lucide="external-link" class="w-4.5 h-4.5"></i>
-                        </a>
-                    </div>
-                    <div class="mb-4">
-                        <div class="flex items-center gap-2 mb-2">
-                            <div class="p-1.5 rounded-2xl text-white ${item.role.color}">
-                                <i data-lucide="${item.role.icon}" class="w-3.5 h-3.5"></i>
-                            </div>
-                            <h4 class="font-bold text-slate-800 text-sm">Tiru bagian ini:</h4>
-                        </div>
-                        <p class="text-sm text-slate-600 leading-relaxed pl-9">
-                            ${item.role.desc}
-                        </p>
-                    </div>
-                </div>
-            `).join('');
-            lucide.createIcons();
-        }
-
-        function handleShuffle() {
-            renderContent(true);
-        }
-
-        window.onload = init;
-    </script>
 </body>
 </html>
